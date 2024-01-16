@@ -1,0 +1,12 @@
+﻿namespace = sp_debug
+
+sp_debug.1 = {
+	type = country_event
+	hidden = yes
+	orphan = yes
+	immediate = {
+		add_journal_entry = {
+			type = je_switch_parliament
+		}
+	}
+}

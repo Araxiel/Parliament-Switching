@@ -1,0 +1,17 @@
+﻿on_law_activated = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_presidential_republic
+					has_law = law_type:law_parliamentary_republic
+				}
+			}
+			set_variable = {
+				name = je_switching_parliament_var
+				value = 0
+			}
+			add_journal_entry = { type =  je_switch_parliament_president }
+		}
+	}
+}

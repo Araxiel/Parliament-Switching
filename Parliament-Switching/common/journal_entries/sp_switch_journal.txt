@@ -1,0 +1,151 @@
+﻿je_switch_parliament = {
+	icon = "gfx/interface/icons/invention_icons/philosophical_pragmatism.dds"
+	
+	group = je_group_internal_affairs
+
+	is_shown_when_inactive = {
+		has_law = law_type:law_presidential_republic
+		is_ai = no
+		NOT = { c:USA ?= this }
+	}
+	
+	possible = {
+		NOT = {
+			any_civil_war = {
+				civil_war_progress > 0.5
+				is_civil_war_type = revolution
+			}
+		}
+	}
+	
+	invalid = {
+		OR = {
+			has_law = law_type:law_parliamentary_republic
+			NOR = {
+				is_enacting_law = law_type:law_parliamentary_republic
+				has_law = law_type:law_presidential_republic
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = switching_parliament_var
+			value = 0
+		}
+	}
+
+	on_monthly_pulse = {
+		random_events = {
+			100 = 0
+			10 = switch_parliament_pulse.1
+			10 = switch_parliament_pulse.2
+			10 = switch_parliament_pulse.3
+			# 100 = switch_parliament_pulse.4	## non gov president furious
+		}
+	}
+	
+	on_weekly_pulse = {
+		effect = {
+			## weekly check if "minority government" (that's technically not what the term means IRL but closest applicable here in vic3)
+			get_ruler_for:parliamentary_elective = {
+				save_scope_as = minority_government_leader
+			}
+			if = {
+				limit = {
+					scope:minority_government_leader = {
+						is_ruler = no
+					}
+				}
+				set_variable = je_switch_to_parliament_minority_government
+			}
+			else = {
+				remove_variable = je_switch_to_parliament_minority_government
+			}
+			## handing out points
+			if = {
+				limit = {
+					NOT = {
+						any_civil_war = {
+							civil_war_progress > 0.5
+							is_civil_war_type = revolution
+						}
+					}
+					has_variable = je_switch_to_parliament_support_going
+				}
+				change_variable = {
+					name = switching_parliament_var
+					add = 0.6
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_variable = je_switch_to_parliament_support_going }
+				}
+				change_variable = {
+					name = switching_parliament_var
+					add = -0.3
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_civil_war = {
+							civil_war_progress > 0.5
+							is_civil_war_type = revolution
+						}
+					}
+					has_variable = je_switch_to_parliament_minority_government
+				}
+				change_variable = {
+					name = switching_parliament_var
+					add = 0.6
+				}
+			}
+		}
+	}
+	
+	complete = {
+		exists = var:switching_parliament_var
+		custom_tooltip = {
+			text = switching_parliament_at_100_tt
+			var:switching_parliament_var >= 100
+		}
+		NOT = {
+			any_civil_war = {
+				civil_war_progress > 0.5
+				is_civil_war_type = revolution
+			}
+		}
+		in_election_campaign = no
+	}
+
+	on_complete = {
+		activate_law = law_type:law_parliamentary_republic
+	}
+	
+	on_invalid = {
+		set_variable = {
+			name = switching_parliament_var
+			value = 0
+		}
+	}
+	
+	scripted_button = je_switch_to_parliament_support_button
+	scripted_button = je_switch_to_parliament_stop_button
+
+	current_value = {
+		value = root.var:switching_parliament_var
+	}
+
+	goal_add_value = {
+		add = 100
+	}
+	
+	## ~0.6 per week for it to take ~3 years (156 weeks)
+
+	progressbar = yes
+	
+	weight = 50
+
+}

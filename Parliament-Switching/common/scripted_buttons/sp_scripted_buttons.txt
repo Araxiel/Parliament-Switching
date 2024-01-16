@@ -1,0 +1,75 @@
+﻿je_switch_to_parliament_support_button = {
+	name = "je_switch_to_parliament_support_button"
+	desc = "je_switch_to_parliament_support_button_desc"
+
+	visible = { always = yes }
+
+	possible = {
+		scope:journal_entry = {
+			not = {
+				custom_tooltip = {
+					text = je_switch_to_parliament_support_going
+					has_variable = je_switch_to_parliament_support_going
+				}
+			}
+		}
+		NOT = {
+			any_interest_group = {
+				is_in_government = yes
+				is_powerful = yes
+				OR = {
+					has_ideology = ideology:ideology_caudillismo
+					has_ideology = ideology:ideology_bakufu
+					has_ideology = ideology:ideology_authoritarian
+					has_ideology = ideology:ideology_positivist
+					has_ideology = ideology:ideology_orleanist
+					has_ideology = ideology:ideology_bonapartist
+					has_ideology = ideology:ideology_jacksonian_democrat
+				}
+			}
+		}
+		NOT = {
+			
+		}
+	}
+
+	effect = {
+		ruler = {
+			interest_group = {
+				save_scope_as = president_ig
+			}
+		}
+		add_radicals = {  
+			value = small_radicals
+			interest_group = scope:president_ig
+		}
+		
+		scope:journal_entry = {
+			custom_tooltip = je_switch_to_parliament_support_going_tt
+			set_variable = { name = je_switch_to_parliament_support_going }
+		}
+	}
+}
+
+je_switch_to_parliament_stop_button = {
+	name = "je_switch_to_parliament_stop_button"
+	desc = "je_switch_to_parliament_stop_button_desc"
+
+	visible = { always = yes }
+
+	possible = {
+		scope:journal_entry = {
+			custom_tooltip = {
+				text = je_switch_to_parliament_support_going
+				has_variable = je_switch_to_parliament_support_going
+			}
+		}
+	}
+
+	effect = {
+		scope:journal_entry = {
+			custom_tooltip = je_switch_to_parliament_support_going_tt
+			remove_variable = je_switch_to_parliament_support_going
+		}
+	}
+}

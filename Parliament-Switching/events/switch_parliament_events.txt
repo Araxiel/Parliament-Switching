@@ -1,0 +1,204 @@
+﻿namespace = switch_parliament_pulse
+
+## small IGs like it, big don't
+switch_parliament_pulse.1 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.1.t
+	desc = switch_parliament_pulse.1.d
+	flavor = switch_parliament_pulse.1.f
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people.mp4"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = long_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+	}
+	
+	immediate = {
+	}
+	
+	## approve of the little ones, anger the large ones
+	option = {
+		name = switch_parliament_pulse.1.a 
+		default_option = yes
+		every_interest_group = { 
+			limit = {
+				is_powerful = no
+			}
+			add_modifier = {
+				name = supported_small_igs
+				months = normal_modifier_time
+			}
+		}
+		every_interest_group = { 
+			limit = {
+				is_powerful = yes
+			}
+			add_modifier = {
+				name = supported_smaller_igs
+				months = normal_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 15 }
+		}
+	}
+
+	## assuage the large parties
+	option = {
+		name = switch_parliament_pulse.1.b
+		every_interest_group = { 
+			limit = {
+				is_powerful = yes
+			}
+			add_modifier = {
+				name = assuaged_unhappy_large_igs
+				months = normal_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 10 }
+		}
+	}
+}
+
+## president unhappy
+switch_parliament_pulse.2 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.2.t
+	desc = switch_parliament_pulse.2.d
+	flavor = switch_parliament_pulse.2.f
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people.mp4"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = long_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+	}
+	
+	immediate = {
+	}
+	
+	## tell him he has to suck it up
+	option = {
+		name = switch_parliament_pulse.2.a 
+		default_option = yes
+		ruler = {
+			interest_group = {
+				add_modifier = {
+					name = taking_power_from_our_president
+					months = normal_modifier_time
+				}
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 10 }
+		}
+	}
+
+	## tell him of the nobility of competition
+	option = {
+		name = switch_parliament_pulse.2.b
+		ruler = {
+			add_modifier = {
+				name = nobility_of_competition
+				months = long_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 5 }
+		}
+	}
+}
+
+## out of government IGs worried
+switch_parliament_pulse.3 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.3.t
+	desc = switch_parliament_pulse.3.d
+	flavor = switch_parliament_pulse.3.f
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people.mp4"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = long_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+	}
+	
+	immediate = {
+	}
+	
+	## tell them to suck it up
+	option = {
+		name = switch_parliament_pulse.3.a 
+		default_option = yes
+		every_interest_group = { 
+			limit = {
+				is_in_government = no
+			}
+			add_modifier = {
+				name = opposition_angered
+				months = normal_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 10 }
+		}
+	}
+
+	## tell them that a parliamental system actually helps them
+	option = {
+		name = switch_parliament_pulse.3.b
+		every_interest_group = { 
+			limit = {
+				is_in_government = no
+			}
+			add_modifier = {
+				name = opposition_invigorated
+				months = normal_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance
+			change_variable = { name = switching_parliament_var add = 5 }
+		}
+	}
+}

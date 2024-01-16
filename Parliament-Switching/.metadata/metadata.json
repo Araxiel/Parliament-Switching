@@ -1,0 +1,12 @@
+{
+  "name" : "Parliament-Switching",
+  "id" : "",
+  "version" : "0.1",
+  "supported_game_version" : "1.5.*",
+  "short_description" : "A small Victoria 3 mod giving access to switch between Parliamentary and Presidential systems",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
