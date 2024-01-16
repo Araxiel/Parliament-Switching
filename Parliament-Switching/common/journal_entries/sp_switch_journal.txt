@@ -102,6 +102,11 @@
 					add = 0.6
 				}
 			}
+			clamp_variable = {
+				name = switching_parliament_var
+				max = 100
+				min = 0
+			}
 		}
 	}
 	
