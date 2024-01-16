@@ -30,5 +30,5 @@ opposition_angered = {
 
 opposition_invigorated = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	interest_group_pop_attraction_mult = 10
+	interest_group_pop_attraction_mult = 0.1
 }
