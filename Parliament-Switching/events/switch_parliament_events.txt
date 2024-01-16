@@ -1,4 +1,4 @@
-namespace = switch_parliament_pulse
+﻿namespace = switch_parliament_pulse
 
 ## small IGs like it, big don't
 switch_parliament_pulse.1 = {
@@ -38,7 +38,7 @@ switch_parliament_pulse.1 = {
 			}
 			add_modifier = {
 				name = supported_small_igs
-				months = normal_modifier_time
+				months = short_modifier_time
 			}
 		}
 		every_interest_group = { 
@@ -47,7 +47,7 @@ switch_parliament_pulse.1 = {
 			}
 			add_modifier = {
 				name = supported_smaller_igs
-				months = normal_modifier_time
+				months = short_modifier_time
 			}
 		}
 		custom_tooltip = {
@@ -65,7 +65,7 @@ switch_parliament_pulse.1 = {
 			}
 			add_modifier = {
 				name = assuaged_unhappy_large_igs
-				months = normal_modifier_time
+				months = short_modifier_time
 			}
 		}
 		custom_tooltip = {
