@@ -19,13 +19,36 @@ switch_parliament_pulse.1 = {
 
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
-	cooldown = { months = long_modifier_time }
+	cooldown = { months = normal_modifier_time }
 
 	trigger = {
 		has_variable = je_switch_to_parliament_support_going
 	}
 	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
 	immediate = {
+		random_interest_group = {
+			limit = {
+				is_powerful = no
+				is_marginal = no
+			}
+			weight = {
+				base = 1
+				modifier = {
+					is_in_government = no
+					add = 3
+				}
+			}
+			save_scope_as = minor_ig
+			leader = {
+				save_scope_as = minor_ig_leader
+			}
+		}
 	}
 	
 	## approve of the little ones, anger the large ones
@@ -35,6 +58,7 @@ switch_parliament_pulse.1 = {
 		every_interest_group = { 
 			limit = {
 				is_powerful = no
+				is_marginal = no
 			}
 			add_modifier = {
 				name = supported_small_igs
@@ -51,7 +75,7 @@ switch_parliament_pulse.1 = {
 			}
 		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
+			text = switching_parliament_var_advance_15
 			change_variable = { name = switching_parliament_var add = 15 }
 		}
 	}
@@ -69,7 +93,7 @@ switch_parliament_pulse.1 = {
 			}
 		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
+			text = switching_parliament_var_advance_10
 			change_variable = { name = switching_parliament_var add = 10 }
 		}
 	}
@@ -94,13 +118,22 @@ switch_parliament_pulse.2 = {
 
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
-	cooldown = { months = long_modifier_time }
+	cooldown = { months = normal_modifier_time }
 
 	trigger = {
 		has_variable = je_switch_to_parliament_support_going
 	}
 	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
 	immediate = {
+		ruler ={
+			save_scope_as = current_president
+		}
 	}
 	
 	## tell him he has to suck it up
@@ -111,12 +144,12 @@ switch_parliament_pulse.2 = {
 			interest_group = {
 				add_modifier = {
 					name = taking_power_from_our_president
-					months = normal_modifier_time
+					months = short_modifier_time
 				}
 			}
 		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
+			text = switching_parliament_var_advance_10
 			change_variable = { name = switching_parliament_var add = 10 }
 		}
 	}
@@ -131,7 +164,7 @@ switch_parliament_pulse.2 = {
 			}
 		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
+			text = switching_parliament_var_advance_5
 			change_variable = { name = switching_parliament_var add = 5 }
 		}
 	}
@@ -149,20 +182,40 @@ switch_parliament_pulse.3 = {
 	flavor = switch_parliament_pulse.3.f
 
 	event_image = {
-		video = "unspecific_ruler_speaking_to_people"
+		video = "unspecific_politicians_arguing"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
-	cooldown = { months = long_modifier_time }
+	cooldown = { months = normal_modifier_time }
 
 	trigger = {
 		has_variable = je_switch_to_parliament_support_going
 	}
 	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
 	immediate = {
+		random_interest_group = {
+			limit = {
+				is_in_government = no
+				is_marginal = no
+			}
+			weight = {
+				base = 2
+				modifier = {
+					is_powerful = yes 
+					add = 3
+				}
+			}
+			save_scope_as = random_ig
+		}
 	}
 	
 	## tell them to suck it up
@@ -172,19 +225,24 @@ switch_parliament_pulse.3 = {
 		every_interest_group = { 
 			limit = {
 				is_in_government = no
+				is_marginal = no
 			}
 			add_modifier = {
 				name = opposition_angered
 				months = normal_modifier_time
 			}
 		}
+		add_radicals = { 
+			value = small_radicals
+			interest_group = scope:random_ig
+		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
+			text = switching_parliament_var_advance_10
 			change_variable = { name = switching_parliament_var add = 10 }
 		}
 	}
 
-	## tell them that a parliamental system actually helps them
+	## Let them campaign based on this issues
 	option = {
 		name = switch_parliament_pulse.3.b
 		every_interest_group = { 
@@ -197,8 +255,116 @@ switch_parliament_pulse.3 = {
 			}
 		}
 		custom_tooltip = {
-			text = switching_parliament_var_advance
-			change_variable = { name = switching_parliament_var add = 5 }
+			text = switching_parliament_var_advance_15
+			change_variable = { name = switching_parliament_var add = 15 }
+		}
+	}
+}
+
+## Out of government IG president furious
+switch_parliament_pulse.4 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.4.t
+	desc = switch_parliament_pulse.4.d
+	flavor = switch_parliament_pulse.4.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+		ruler = {
+			interest_group = {
+				is_in_government = no
+			}
+		}
+	}
+	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
+	immediate = {
+		ruler = {
+			save_scope_as = current_president
+			interest_group = {
+				save_scope_as = president_ig
+			}
+		}
+		random_interest_group = {
+			limit = {
+				is_in_government = yes
+			}
+			save_scope_as = government_ig
+		}
+		save_scope_as = event_country
+	}
+	
+	## he effectively uses the percieved attack against him to rally his supporters
+	option = {
+		name = switch_parliament_pulse.4.a 
+		default_option = yes
+		scope:current_president = {
+			add_modifier = {
+				name = filled_with_determination
+				months = long_modifier_time
+			}
+			interest_group = {
+				add_modifier = {
+					name = opposition_invigorated
+					months = normal_modifier_time
+				}
+			}
+		}
+		add_radicals = { 
+			value = small_radicals
+			interest_group = scope:president_ig
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance_20
+			change_variable = { name = switching_parliament_var add = 20 }
+		}
+	}
+
+	## organize against him
+	option = {
+		name = switch_parliament_pulse.4.b
+		get_ruler_for:parliamentary_elective = {
+			interest_group = {
+				random_list = {
+					1 = {
+						add_modifier = {
+							name = opposition_invigorated			
+							months = normal_modifier_time
+						}
+					}
+					1 = {
+						add_modifier = {
+							name = poorly_worded_pamphlets
+							months = normal_modifier_time
+						}
+					}
+				}
+			}
+		}
+		scope:president_ig = {
+			add_modifier = {
+				name = opposition_furious			
+				months = normal_modifier_time
+			}
 		}
 	}
 }

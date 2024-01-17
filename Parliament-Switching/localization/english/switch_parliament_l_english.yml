@@ -1,0 +1,59 @@
+﻿l_english: 
+
+ je_switch_parliament: "Presidential System Reform"
+ je_switch_parliament_reason: "Some minor elements in our government have been dissatisfied with our presidential system and instead believe a parliamentary system might serve the people, and perhaps them, better.\nWhile these discussions are ultimately just harmless musings, given the right incentives and some support, we could create the conditions to push for actual reformation and transformation of our system."
+
+ switching_parliament_at_100_tt: "The #bold Progress Bar#! has reached #variable 100%#!"
+
+ je_switch_to_parliament_support_button: "Support Presidential Reform"
+ je_switch_to_parliament_support_button_desc: "Support reforming the presidential system into a parliamentarian one. However, expect push back by the established interest groups."
+ je_switch_to_parliament_stop_button: "Retract Reform Support"
+ je_switch_to_parliament_stop_button_desc: "Retract support and let reform progress start to decay."
+ je_switch_to_parliament_support_going: "Support is currently in progress!"
+ je_switch_to_parliament_support_going_tt: "Stops reform support!"
+
+ je_switch_to_parliament_support_going_not_tt: "Support not already in progress!"
+ je_switch_to_parliament_support_button_cooldown_condition_tt: "Has not used either decision in the past #bold year#!!"
+ je_switch_to_parliament_support_going_effect_tt: "The reform will start progressing by #variable 1#! every week and events will start happening."
+
+ switching_parliament_var_increase: "Advanced the parliamentary reform by"
+ switching_parliament_var_advance_20: "$switching_parliament_var_increase$ #variable 20#!!"
+ switching_parliament_var_advance_15: "$switching_parliament_var_increase$ #variable 15#!!"
+ switching_parliament_var_advance_10: "$switching_parliament_var_increase$ #variable 10#!!"
+ switching_parliament_var_advance_5: "$switching_parliament_var_increase$ #variable 5#!!"
+
+ switch_parliament_pulse.1.t: "Presidential Reform: The Little Guys"
+ switch_parliament_pulse.1.d: "The continuing reform process of our presidential system into a parliamentarian one has the various smaller interest groups delighted."
+ switch_parliament_pulse.1.f: ""Finally, the time of those that have been ignored and overshadowed will come. A true democratic government, where even we will have a voice!"\n\n"Every child already has a voice. Are you suggesting adults should listen to the unreasonable whining of every single one of them? This entire idea is absurd.""
+ switch_parliament_pulse.1.a: "The voices of the smaller groups should be listened to."
+ switch_parliament_pulse.1.b: "Let the smaller groups have a voice, their yapping is harmless."
+  supported_small_igs: "Supported Small Interest Groups"
+  supported_smaller_igs: "$supported_small_igs$"
+  assuaged_unhappy_large_igs: "Assuaged Large Interest Groups"
+
+  switch_parliament_pulse.2.t: "Presidential Reform: President Displeased"
+  switch_parliament_pulse.2.d: "[SCOPE.sCharacter('current_president').GetPrimaryRoleTitle] [SCOPE.sCharacter('current_president').GetFullName] is displeased his office and role will be liquidated, and has both privately and publicly made his discontent clear."
+  switch_parliament_pulse.2.f: ""My [SCOPE.sCharacter('current_president').GetPrimaryRoleTitle], while I understand the work you have done to get where you are and that your title is a prestigious one, understand you are neither being deposed nor that this has to be a resignation from power. See it more as simply a relabelling of your office.""
+  switch_parliament_pulse.2.a: "Let him complain and make a fuss."
+  switch_parliament_pulse.2.b: "Illuminate to him the nobility of putting aside the title and the possibilities of donning a new one."
+
+  taking_power_from_our_president: "Slighted our Leader"
+  nobility_of_competition: "Nobility of Letting Go"
+
+  switch_parliament_pulse.3.t: "Presidential Reform: Opposition Worried"
+  switch_parliament_pulse.3.d: "Opposition groups are worried that this entire reform process might be a ploy by the government to entrench themselves and shut out opposition groups."
+  switch_parliament_pulse.3.f: ""My colleagues in the opposition, we might have our difference, but I think I can talk for us all when I say that it is clear for everyone to see that this is nothing but a naked power grab by those in government!"\n\n"Hear, hear!"
+  switch_parliament_pulse.3.a: "Rebuke and shut down this opposition talk."
+  switch_parliament_pulse.3.b: "Let them campaign based on these baseless claims."
+
+  opposition_angered: "Opposition Angered"
+  opposition_invigorated: "Opposition Invigorated"
+
+  switch_parliament_pulse.4.t: "Presidential Reform: Opposition President"
+  switch_parliament_pulse.4.d: "[SCOPE.sCharacter('current_president').GetPrimaryRoleTitle] [SCOPE.sCharacter('current_president').GetFullName] of the [SCOPE.gsInterestGroup('president_ig').GetName] is furious, since it seems you want to force him out of office. [SCOPE.sCharacter('current_president').GetSheHe|U]'s mobilized [SCOPE.sCharacter('current_president').GetHerHis] base and supporters and calling this reform a "legislative coup""
+  switch_parliament_pulse.4.f: ""This is an unacceptable witch hunt perpetrated by my enemies in the [SCOPE.gsInterestGroup('government_ig').GetNameNoFormatting]! Those traitors to the [SCOPE.GetRootScope.GetCountry.GetNameNoFormatting] failed to defeat me in the open, so they are using underhanded methods of so called reform, to depose me and subvert the will of the [SCOPE.GetRootScope.GetCountry.GetAdjectiveNoFormatting] people!""
+  switch_parliament_pulse.4.a: "Let [SCOPE.sCharacter('current_president').GetHerHim] shout, let [SCOPE.sCharacter('current_president').GetHerHim] stomp; it only makes the case for reforms stronger."
+  switch_parliament_pulse.4.b: "Organize against [SCOPE.sCharacter('current_president').GetPrimaryRoleTitle] [SCOPE.sCharacter('current_president').GetFullName]."
+
+  opposition_furious: "Campaigned against our President"
+  successful_campaign: "Successful Reformation Campaign"

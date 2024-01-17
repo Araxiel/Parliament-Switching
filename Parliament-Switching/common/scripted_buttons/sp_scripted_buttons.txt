@@ -5,18 +5,26 @@
 	visible = { always = yes }
 
 	possible = {
+		not = {
+			custom_tooltip = {
+				text = je_switch_to_parliament_support_going_not_tt
+				has_variable = je_switch_to_parliament_support_going
+			}
+		}
 		scope:journal_entry = {
 			not = {
 				custom_tooltip = {
-					text = je_switch_to_parliament_support_going
-					has_variable = je_switch_to_parliament_support_going
+					text = je_switch_to_parliament_support_button_cooldown_condition_tt
+					has_variable = je_switch_to_parliament_support_button_cooldown
 				}
 			}
 		}
 		NOT = {
 			any_interest_group = {
-				is_in_government = yes
-				is_powerful = yes
+				OR = {
+					is_in_government = yes
+					is_powerful = yes
+				}
 				OR = {
 					has_ideology = ideology:ideology_caudillismo
 					has_ideology = ideology:ideology_bakufu
@@ -27,9 +35,6 @@
 					has_ideology = ideology:ideology_jacksonian_democrat
 				}
 			}
-		}
-		NOT = {
-			
 		}
 	}
 
@@ -43,10 +48,10 @@
 			value = small_radicals
 			interest_group = scope:president_ig
 		}
-		
+		custom_tooltip = je_switch_to_parliament_support_going_effect_tt
+		set_variable = { name = je_switch_to_parliament_support_going }
 		scope:journal_entry = {
-			custom_tooltip = je_switch_to_parliament_support_going_tt
-			set_variable = { name = je_switch_to_parliament_support_going }
+			set_variable = { name = je_switch_to_parliament_support_button_cooldown years = 1 }
 		}
 	}
 }
@@ -58,18 +63,25 @@ je_switch_to_parliament_stop_button = {
 	visible = { always = yes }
 
 	possible = {
+		custom_tooltip = {
+			text = je_switch_to_parliament_support_going
+			has_variable = je_switch_to_parliament_support_going
+		}
 		scope:journal_entry = {
-			custom_tooltip = {
-				text = je_switch_to_parliament_support_going
-				has_variable = je_switch_to_parliament_support_going
+			not = {
+				custom_tooltip = {
+					text = je_switch_to_parliament_support_button_cooldown_condition_tt
+					has_variable = je_switch_to_parliament_support_button_cooldown
+				}
 			}
 		}
 	}
 
 	effect = {
 		scope:journal_entry = {
-			custom_tooltip = je_switch_to_parliament_support_going_tt
-			remove_variable = je_switch_to_parliament_support_going
+			set_variable = { name = je_switch_to_parliament_support_button_cooldown years = 1 }
 		}
+		custom_tooltip = je_switch_to_parliament_support_going_tt
+		remove_variable = je_switch_to_parliament_support_going
 	}
 }

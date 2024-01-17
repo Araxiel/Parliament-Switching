@@ -1,4 +1,5 @@
-﻿supported_small_igs = {
+﻿#we_are_listened_to
+supported_small_igs = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	interest_group_approval_add = 1
 }
@@ -13,6 +14,7 @@ assuaged_unhappy_large_igs = {
 	interest_group_approval_add = -1
 }
 
+## modifier_expert_dissents
 taking_power_from_our_president = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	interest_group_approval_add = -1
@@ -31,4 +33,14 @@ opposition_angered = {
 opposition_invigorated = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	interest_group_pop_attraction_mult = 0.1
+}
+
+successful_campaign = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_pop_attraction_mult = 0.1
+}
+
+opposition_furious = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = -2
 }

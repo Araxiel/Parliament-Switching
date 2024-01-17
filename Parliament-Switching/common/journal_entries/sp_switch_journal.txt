@@ -5,7 +5,7 @@
 
 	is_shown_when_inactive = {
 		has_law = law_type:law_presidential_republic
-		is_ai = no
+		is_player = yes
 		NOT = { c:USA ?= this }
 	}
 	
@@ -37,11 +37,11 @@
 
 	on_monthly_pulse = {
 		random_events = {
-			100 = 0
+			1 = 0
 			10 = switch_parliament_pulse.1
 			10 = switch_parliament_pulse.2
 			10 = switch_parliament_pulse.3
-			# 100 = switch_parliament_pulse.4	## non gov president furious
+			100 = switch_parliament_pulse.4	## non gov president furious
 		}
 	}
 	
@@ -75,7 +75,7 @@
 				}
 				change_variable = {
 					name = switching_parliament_var
-					add = 0.6
+					add = 1
 				}
 			}
 			if = {
@@ -84,7 +84,7 @@
 				}
 				change_variable = {
 					name = switching_parliament_var
-					add = -0.3
+					add = -0.5
 				}
 			}
 			if = {
@@ -99,7 +99,7 @@
 				}
 				change_variable = {
 					name = switching_parliament_var
-					add = 0.6
+					add = 1
 				}
 			}
 			clamp_variable = {
