@@ -111,7 +111,7 @@ switch_parliament_pulse.2 = {
 	flavor = switch_parliament_pulse.2.f
 
 	event_image = {
-		video = "unspecific_ruler_speaking_to_people"
+		video = "southamerica_aristocrats"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -365,6 +365,268 @@ switch_parliament_pulse.4 = {
 				name = opposition_furious			
 				months = normal_modifier_time
 			}
+		}
+	}
+}
+
+## make intelligentsia chill out
+switch_parliament_pulse.5 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.5.t
+	desc = switch_parliament_pulse.5.d
+	flavor = switch_parliament_pulse.5.f
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+		any_interest_group = {
+			has_ideology = ideology:ideology_republican
+			is_marginal = no
+		}
+		var:switching_parliament_var >= 70
+	}
+	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
+	immediate = {
+		save_scope_as = event_country
+		ruler = {
+			save_scope_as = president
+		}
+		
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				NOT = { has_ideology = ideology:ideology_republican }
+			}
+			weight = {
+				base = 2
+				modifier = {
+					is_powerful = yes 
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_proletarian
+						has_ideology = ideology:ideology_populist
+					}
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_socialist
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_social_democrat
+					}
+					add = 1
+				}
+			}
+			save_scope_as = random_ig1
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				NOT = { has_ideology = ideology:ideology_republican }
+				NOT = { scope:random_ig1 ?= THIS }
+			}
+			weight = {
+				base = 2
+				modifier = {
+					is_powerful = yes 
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_proletarian
+						has_ideology = ideology:ideology_populist
+					}
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_socialist
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+					add = 3
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_social_democrat
+					}
+					add = 1
+				}
+				modifier = {
+					OR = {
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_social_democrat
+					}
+					add = -1
+				}
+			}
+			save_scope_as = random_ig2
+		}
+		random_interest_group = {
+			limit = {
+				has_ideology = ideology:ideology_republican
+			}
+			weight = {
+				base = 2
+				modifier = {
+					is_powerful = yes 
+					add = 3
+				}
+			}
+			save_scope_as = republican_ig
+		}
+	}
+	
+	## Promise them various important position
+	option = {
+		name = switch_parliament_pulse.5.a 
+		default_option = yes
+		every_interest_group = {
+			limit = {
+				has_ideology = ideology:ideology_republican
+			}
+			random_list = {
+				1 = {
+					add_modifier = {
+						name = received_important_new_positions		
+						months = normal_modifier_time
+					}
+				}
+				1 = {
+					add_modifier = {
+						name = received_decent_new_positions
+						months = normal_modifier_time
+					}
+				}
+			}
+		}
+		add_radicals = {
+			value = medium_radicals
+			pop_type = bureaucrats
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_advance_10
+			change_variable = { name = switching_parliament_var add = 10 }
+		}
+	}
+
+	## Let them rail against others
+	option = {
+		name = switch_parliament_pulse.5.b
+		
+		scope:republican_ig = {
+			add_modifier = {
+				name = republican_venting	
+				months = normal_modifier_time
+			}
+		}
+		scope:random_ig1 = {
+			add_modifier = {
+				name = republican_venting_target	
+				months = normal_modifier_time
+			}
+		}
+		scope:random_ig2 = {
+			add_modifier = {
+				name = republican_venting_target	
+				months = normal_modifier_time
+			}
+		}
+	}
+}
+
+## Bureaucratic work	Bureaucratic Imbroglio
+switch_parliament_pulse.6 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = switch_parliament_pulse.6.t	# generic_laws.5.t
+	desc = switch_parliament_pulse.6.d
+	flavor = switch_parliament_pulse.6.f
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		has_variable = je_switch_to_parliament_support_going
+		var:switching_parliament_var >= 40
+	}
+	
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_switch_parliament
+		}
+	}
+	
+	immediate = {
+		save_scope_as = event_country
+	}
+	
+	## Dedicated resources to the reform process
+	option = {
+		name = switch_parliament_pulse.6.a 
+		default_option = yes
+		add_radicals = {
+			value = small_radicals
+			pop_type = bureaucrats
+		}
+		add_modifier = {
+			name = cutting_red_tape
+			months = normal_modifier_time
+		}
+		custom_tooltip = {
+			text = switching_parliament_var_reduce_20
+			change_variable = { name = switching_parliament_var subtract = 20 }
+		}
+	}
+
+	## Accept the setback
+	option = {
+		name = switch_parliament_pulse.6.b
+		
+		custom_tooltip = {
+			text = switching_parliament_var_reduce_40
+			change_variable = { name = switching_parliament_var subtract = 40 }
 		}
 	}
 }

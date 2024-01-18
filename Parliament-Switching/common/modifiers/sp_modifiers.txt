@@ -1,4 +1,4 @@
-﻿#we_are_listened_to
+#we_are_listened_to
 supported_small_igs = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	interest_group_approval_add = 1
@@ -41,6 +41,28 @@ successful_campaign = {
 }
 
 opposition_furious = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	interest_group_approval_add = -2
+}
+
+received_important_new_positions = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_approval_add = 6
+	interest_group_pol_str_mult = 0.2
+}
+
+received_decent_new_positions = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_approval_add = 4
+	interest_group_pol_str_mult = 0.1
+}
+
+republican_venting = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	interest_group_approval_add = 5
+}
+
+republican_venting_target = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
 	interest_group_approval_add = -2
 }

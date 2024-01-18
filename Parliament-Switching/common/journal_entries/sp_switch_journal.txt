@@ -37,11 +37,13 @@
 
 	on_monthly_pulse = {
 		random_events = {
-			1 = 0
+			30 = 0
 			10 = switch_parliament_pulse.1
 			10 = switch_parliament_pulse.2
 			10 = switch_parliament_pulse.3
-			100 = switch_parliament_pulse.4	## non gov president furious
+			50 = switch_parliament_pulse.4	## non gov president furious
+			10 = switch_parliament_pulse.5
+			10 = switch_parliament_pulse.6
 		}
 	}
 	
